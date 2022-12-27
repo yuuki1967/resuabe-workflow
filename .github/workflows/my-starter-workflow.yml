@@ -2,13 +2,14 @@ name: My Starter Workflow
 
 on:
   pull_request:
-    types: [opened]
+    types: [labeled]
     branches:
       - 'main'
   workflow_dispatch:
 
-jobs:
+jobs:   
   build:
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
     runs-on: ubuntu-latest
     
     steps:
@@ -21,6 +22,7 @@ jobs:
           echo test, and deploy to your project.
           
   call-reusable-workflow:
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
     strategy:
       matrix:
         nodeversion: [14, 16, 18, 20]
