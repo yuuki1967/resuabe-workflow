@@ -1,6 +1,10 @@
 name: My Starter Workflow
 
 on:
+  pull_request:
+    types: [opened]
+    branches:
+      - 'main'
   workflow_dispatch:
 
 jobs:
@@ -17,6 +21,9 @@ jobs:
           echo test, and deploy to your project.
           
   call-reusable-workflow:
+    strategy:
+      matrix:
+        nodeversion: [14, 16, 18, 20]
     uses: ./.github/workflows/reusable-workflow.yml
     with:
-      node: 14        
+      node: ${{ matrix.nodeversion }}   
