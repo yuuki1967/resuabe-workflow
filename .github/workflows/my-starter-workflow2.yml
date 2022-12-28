@@ -26,6 +26,6 @@ jobs:
     strategy:
       matrix:
         nodeversion: [14, 16, 18, 20]
-    uses: yuuki1967/reusable-workflow/.github/workflows/reusable-workflow.yml@v1.0.0
+    uses: yuuki1967/reusable-workflow/.github/workflows/reusable-workflow.yml@main
     with:
       node: ${{ matrix.nodeversion }}   
