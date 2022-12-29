@@ -22,7 +22,7 @@ jobs:
           echo test, and deploy to your project.
           
   call-reusable-workflow:
-    if: contains(github.event.pull_request.labels.*.name, 'stage2')
+    needs: build
     strategy:
       matrix:
         nodeversion: [14, 16, 18, 20]
