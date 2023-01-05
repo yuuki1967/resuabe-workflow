@@ -1,0 +1,33 @@
+name: My Starter Workflow2
+
+on:
+  pull_request:
+    types: [labeled]
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:   
+  build:
+    if: contains(github.event.pull_request.labels.*.name, 'stage2')
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - uses: actions/checkout@v3
+      
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy to your project.
+          
+  call-reusable-workflow-demo:
+    needs: build
+    steps:
+      - name: Testing Composite Action
+        continue-on-error: true
+        id: test_composite_action
+        uses: octodemo/my-composite-action@main
+        with:
+          token: ${{ secrets.OCTODEMO_OCTODEMO_BOT_TOKEN }}
+          org: octodemo
