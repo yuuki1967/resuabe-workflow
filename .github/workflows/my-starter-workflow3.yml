@@ -9,7 +9,7 @@ on:
 
 jobs:   
   build:
-    if: contains(github.event.pull_request.labels.*.name, 'stage2')
+    if: contains(github.event.pull_request.labels.*.name, 'stage3')
     runs-on: ubuntu-latest
     
     steps:
@@ -23,6 +23,7 @@ jobs:
           
   call-reusable-workflow-demo:
     needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Testing Composite Action
         continue-on-error: true
